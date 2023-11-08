@@ -25,7 +25,4 @@ Route::get('/create-news', [NewsController::class, 'createNewsPage']);
 
 Route::post('/create-news', [NewsController::class, 'createNews']);
 
-
-Route::get('/news/{id}', function () {
-    return 'News by id';
-});
+Route::get('/news/{id}',  [NewsController::class, 'getNewsByIdPage']);

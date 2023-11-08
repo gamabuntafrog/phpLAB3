@@ -5,10 +5,13 @@
     <ul>
     @foreach($news as $obj)
         <li>
-            <a href="update-news/{{$obj->id}}">
+            <a href="news/{{$obj->id}}">
                 <h3>{{$obj->title}}</h3>
-                <h3>{{$obj->description}}</h3>
-                <h3>{{$obj->text}}</h3>
+            </a>
+            <h3>{{$obj->description}}</h3>
+            <h3>{{$obj->text}}</h3>
+            <a href="update-news/{{$obj->id}}">
+                <button>Update</button>
             </a>
         </li>
     @endforeach

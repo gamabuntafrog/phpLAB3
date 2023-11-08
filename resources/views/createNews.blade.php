@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('main_content')
-    <h2>Створити новину</h2>
+    <h2>Create news</h2>
 
     <form action="/create-news" method="POST">
         @csrf

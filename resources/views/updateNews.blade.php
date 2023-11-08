@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('main_content')
-    <h2>Оновити новину {{$news->id}}</h2>
+    <h2>Update news ({{$news->id}})</h2>
 
     <form action="/update-news/{{$news->id}}" method="POST">
         @csrf

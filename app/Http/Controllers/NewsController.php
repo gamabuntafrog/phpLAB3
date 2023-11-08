@@ -14,9 +14,23 @@ class NewsController extends Controller
         return view('news', ['news' => $news->all()]);
     }
 
+    public function getNewsByIdPage(Request $request) {
+        $id = request('id');
+
+        $news = News::find($id);
+
+        if (!$news) {
+            redirect()->route('newsPage');
+        }
+
+        $news->watchCount += 1;
+
+        $news->save();
+
+        return view('newsById', ['news'=> $news]);
+    }
     public function createNewsPage() {
         return view('createNews');
-
     }
 
     public function createNews(Request $request) {
