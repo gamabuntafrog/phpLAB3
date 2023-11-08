@@ -12,7 +12,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use App\Http\Controllers\NewsController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [NewsController::class, 'getNews'])->name('newsPage');
+
+Route::get('/update-news/{id}', [NewsController::class, 'updateNewsPage']);
+
+Route::post('/update-news/{id}', [NewsController::class, 'updateNews']);
+
+
+Route::get('/create-news', [NewsController::class, 'createNewsPage']);
+
+Route::post('/create-news', [NewsController::class, 'createNews']);
+
+Route::get('/news/{id}',  [NewsController::class, 'getNewsByIdPage']);
