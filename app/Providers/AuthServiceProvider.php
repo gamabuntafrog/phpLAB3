@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +21,20 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+
+        Gate::define('news-basic', function ($user) {
+            return $user !== null; // Check if the user is authenticated
+        });
+
+        Gate::define('update-news', function ($user, $news) {
+            if($user->role === "super_admin") return true;
+
+            return $user->role === "editor" && $news->creator_user_id === $user->id;
+        });
+
+        Gate::define('delete-news', function ($user) {
+            return $user->role === "super_admin";
+        });
     }
 }
